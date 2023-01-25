@@ -14,7 +14,7 @@ async function main() {
   const userWallet = process.env.USERWALLET;
   const oldLevel = await controller.findUser(userWallet);
   const newLevel = oldLevel.level.concat('1');
-  const level = parseInt(newLevel, 2);
+  const level = parseInt(newLevel-10, 2);
   let nftTxn = await myNftContract.performUpkeep(tokenId, level);
   await nftTxn.wait();
   await alchemy.nft.refreshNftMetadata(userWallet, tokenId);
